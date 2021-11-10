@@ -1,0 +1,2 @@
+# Web
+mainly frontend notes
