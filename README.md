@@ -1,2 +1,2 @@
 # Web
-mainly frontend notes
+1) mainly frontend notes
