@@ -59,4 +59,4 @@ For instance, Some sorts of codes accepted by Google chrome maybe refused by Fir
 ## Modern Javascript
 Javascript specification after ES6 <br>
 What the following files inform about are post-ES6 specifications and manuals
-![20211030-0031-2](https://img.smyhvae.com/20211030-0031-2.png)
+
