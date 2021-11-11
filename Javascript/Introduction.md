@@ -17,7 +17,9 @@ How does the engine works? (Simple discription)
 3) run the machine codes
 ```
 
-**In a nutshell, Javascript is a script to make websites alive in frontend field.** <br>
+**In a nutshell, Javascript is a script to make websites alive in frontend field.** 
+<br>
+<br>
 
 ## Abilities and restrictions of Javascript 
 #### Abilities
@@ -33,7 +35,8 @@ Manipulate the web / web server
 2) accessability to data contained outside of the webpage
 
 **We need extra manipulations to lift the above restrictions**
-
+<br>
+<br>
 ## Javascript and language "over" it
 Stylish language that would be converted to javascript before execution
 ```
@@ -42,13 +45,17 @@ Stylish language that would be converted to javascript before execution
 3) converts the script to machine codes
 4) run the machine codes
 ```
-
 Instance:
 - Typescript: adding “strict data typing” to simplify the development and support of complex systems
 - CoffeeScript: shorter syntax and achieve clearer and more precise code
 - Dart: standalone language that has its own engine that runs in non-browser environments 
-
+<br>
+<br>
 ## Javascript and compatibility tables
 Whether a piece of code can run depends on both the syntax and its compatibility to the browser. <br>
 Some sorts of codes accepted by Google chrome maybe refused by Firefox. <br>
 **It is a must to check the compatibility table before used the code.**
+<br>
+<br>
+## Modern Javascript
+Javascript specification after ES6
