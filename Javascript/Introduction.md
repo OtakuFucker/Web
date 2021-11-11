@@ -10,7 +10,7 @@ Instances of Javascript engines:
 - **SpiderMonkey** in Firefox
 <br>
 
-How does the engine works? (Simple discription)
+Simple discription to the process of Javascript execution:
 ```
 1) the embedded engine reads script's codes
 2) converts the script to machine codes
@@ -49,13 +49,14 @@ Instance:
 - Typescript: adding “strict data typing” to simplify the development and support of complex systems
 - CoffeeScript: shorter syntax and achieve clearer and more precise code
 - Dart: standalone language that has its own engine that runs in non-browser environments 
-<br>
-<br>
+
 ## Javascript and compatibility tables
 Whether a piece of code can run depends on both the syntax and its compatibility to the browser. <br>
-Some sorts of codes accepted by Google chrome maybe refused by Firefox. <br>
+For instance, Some sorts of codes accepted by Google chrome maybe refused by Firefox. <br><br>
 **It is a must to check the compatibility table before used the code.**
 <br>
 <br>
 ## Modern Javascript
-Javascript specification after ES6
+Javascript specification after ES6 <br>
+What the following files inform about are post-ES6 specifications and manuals
+![20211030-0031-2](https://img.smyhvae.com/20211030-0031-2.png)
