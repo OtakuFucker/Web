@@ -1,0 +1,12 @@
+---
+title: Allocation in stack and heap
+---
+## Stack and Heap
+Once we maniuplate javascript code, the JS engine allocates memory for this and releases it once it's not needed anymore.
+![image](https://user-images.githubusercontent.com/89114612/141302512-f92864fc-c62e-43b9-aac6-3f1e9e2653f7.png)
+All data types (static data) are allocated to **stack memory**, while Reference Type would be allocated to **heap memory** afterward
+
+The process of memory allocation:<br>
+1. Static memory allocation (for all data) > 2. Dynamic memory allocation (for references)
+
+### Stack: Static memory allocation
