@@ -1,5 +1,5 @@
 ---
-title: Allocation in stack and heap
+title: Allocation in stack and heap 🟠
 ---
 ## Stack and Heap
 Once we maniuplate javascript code, the JS engine allocates memory for this and releases it once it's not needed anymore.
