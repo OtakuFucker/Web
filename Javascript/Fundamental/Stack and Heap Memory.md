@@ -1,11 +1,12 @@
 ---
 title: Memory allocation / Garbage collection and Memory leaks 🟠
 ---
-It's fine to complete a simple project even though you know nothing about the above topics. Therefore, there's no shame to pass this chapter if you're too new to them.
+It's fine to complete a simple project even though you know nothing about the above topics. Therefore, there's no shame to pass this chapter if you're too new to this.
 ## Memory
-In all language, memory consists in address and value <br>
+In all language, memory consists of address and value.<br>
 ![image](https://user-images.githubusercontent.com/89114612/141340337-bf1aff17-ea1b-436e-93f0-71c0e9a0da5b.png)
 
+There are various types of memory structures.
 ## Memory Allocation
 Once we maniuplate javascript code, the JS engine allocates memory for this and releases it once it's not needed anymore.
 ![image](https://user-images.githubusercontent.com/89114612/141302512-f92864fc-c62e-43b9-aac6-3f1e9e2653f7.png)
