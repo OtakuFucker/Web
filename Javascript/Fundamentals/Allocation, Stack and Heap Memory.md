@@ -15,7 +15,7 @@ Once an assignment occurs, the JS engine allocates memory for this and releases 
 ![image](https://user-images.githubusercontent.com/89114612/141302512-f92864fc-c62e-43b9-aac6-3f1e9e2653f7.png)
 In the above image, there are three steps in the Memory life cycle:
 1) Allocate the memory developer need
-2) Use the allocated memory (read, write)
+2) Use the allocated memory
 3) Release the allocated memory when it is not needed anymore
 
 Used of allocated memory should be done by developer in all languages. However, as a high level language, javascript finish the first and last step implicitly and provide no explicit operation to them. 
