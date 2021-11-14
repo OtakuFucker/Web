@@ -2,31 +2,35 @@
 title: Memory allocation, Stack and Heap 🟠
 ---
 It's fine to complete a simple project even though you know nothing about this. Therefore, there's no shame to pass this chapter if you're too new to this.
-## Memory
+## Abstract
+### 1. Memory
 In all language, memory consists of address and value.
 
 ![image](https://user-images.githubusercontent.com/89114612/141340337-bf1aff17-ea1b-436e-93f0-71c0e9a0da5b.png)
 
-There are various types of memory structures.
-## Memory Allocation
-Once we maniuplate javascript code, the JS engine allocates memory for this and releases it once it's not needed anymore.
+There are various types of memory structures. We're gonna talk about stack and heap in this article.
+
+### 2. Memory Allocation
+Once an assignment occurs, the JS engine allocates memory for this and releases it once it's not needed anymore.
 ![image](https://user-images.githubusercontent.com/89114612/141302512-f92864fc-c62e-43b9-aac6-3f1e9e2653f7.png)
 In the above image, there are three steps in the Memory life cycle:
-1) Allocate the memory you need
+1) Allocate the memory developer need
 2) Use the allocated memory (read, write)
 3) Release the allocated memory when it is not needed anymore
 
 Used of allocated memory should be done by developer in all languages. However, as a high level language, javascript finish the first and last step implicitly and provide no explicit operation to them. 
 <br>
 
-Therefore, we can conclude that the process of memory life cycle **in js** is...
-1) Allocates memory automatically
-2) Uses the allocated memory 
-3) Releases the allocated memory when it is not needed anymore automatically
+Therefore, we can conclude that the memory life cycle **in js** is...
+1) Allocate memory automatically
+2) Use the allocated memory 
+3) Release the allocated memory when it is not needed anymore automatically
 
-This chapter correspondingly focuses on **allocation**, **use** parts.
+### 3. Agenda
+In this chapter, we correspondingly focus on explaining step and **allocation** and **use**.
 
-## 1. Allocation
+## Body
+### 1. Allocation
 **When allocation occurs, Js engine creates a memory location for variable and assign a value to it.**
 
 Technically speaking, allocation occurs only if the variable is defined, which means there's a initializing value.
@@ -57,7 +61,7 @@ In Javascript, you can say that declaration guarantees definition.
 //Therefore, Declared-only variables in javascript are also able to trigger allocation.
 ```
 
-## 2. Use
+### 2. Use
 Instances of using allocated memory: **Write/Read the value of variable + Passing the argument**
 ```
 let x;         //x = undefined and allocated to a memory
@@ -196,7 +200,7 @@ In fact, during allocation...
 
 **All variables are actually first point to their corresponding address in stack, the difference is between which memory is its value stored in.**
 
-#### Stack
+#### 2.2.1. Stack
 1. Stack is a linear data structure.
 2. Variables are stored in stack one by one and based on the rule of ```FILO```.(first in last out)
 ```
@@ -215,7 +219,7 @@ let obj = {};
 |    num2    |   0x02  |  2    | 
 |    num     |   0x01  |  1    | 
 
-#### Heap 
+#### 2.2.2 Heap 
 1. Stack is a non-linear data structure.
 2. Variable are stored in the heap randomly.
 
@@ -225,7 +229,15 @@ let obj = {};
 
 <br>
 
+#### Conclusion
 Let's go back to the mentioned question about what did reference means. The actual meaning of refernce is **the address that point to the object that stored in heap**.
 
 ## Summary
-***In-depth understanding to stack and heap is so complex even to developers. It's fairly enough to know these features abstractly in this period.***
+- Keywords in this chapter:
+1. Allocation and Use of memory
+2. Primitive value and Reference
+3. Stacks and Heap
+4. Address and Value
+
+### Remainder: 
+***Many questions might still be remained after you finished the topic, especially in computing field, and it's totally appreciated. However, in-depth understanding to memory structure is so complex even to developers. In this period, it's fairly enough to know these features abstractly.***
