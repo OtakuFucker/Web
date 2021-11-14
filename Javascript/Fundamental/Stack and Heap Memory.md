@@ -221,9 +221,11 @@ let obj = {};
 
 <figure>
 <img src="https://user-images.githubusercontent.com/89114612/141675699-de74f8f8-9e4b-46b3-8904-3d2c1355802a.png" style="height:450px;">
-<figurecaption>[img from: https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239]</figurecaption>
 </figure>
 
-Let's go back to the mentioned question that what did reference means. The actual meaning of refernce is **the address that point to the object that stored in heap**.
+<br>
 
+Let's go back to the mentioned question about what did reference means. The actual meaning of refernce is **the address that point to the object that stored in heap**.
+
+## Summary
 ***In-depth understanding to stack and heap is so complex even to developers. It's fairly enough to know these features abstractly in this period.***
