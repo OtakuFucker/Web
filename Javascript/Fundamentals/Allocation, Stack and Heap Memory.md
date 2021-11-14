@@ -238,7 +238,7 @@ Let's go back to the mentioned question about what did reference means. The actu
 - const: unchangeable variable <br>
 To a beginner, it may straightly be understood that their difference is based on whether the value they contain can be modified.
 
-However, this understanding needs facing some nonsense situations:
+However, there are some nonsense situations to be objection to this understanding:
 1.
 ```
 const _arr = [1,2,3,4];
