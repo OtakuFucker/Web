@@ -1,5 +1,5 @@
 ---
-title: variable and primitive data types
+Title: Variable and Basic data types
 ---
  
 ## Variable
