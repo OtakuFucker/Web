@@ -232,6 +232,8 @@ let obj = {};
 #### Conclusion
 Let's go back to the mentioned question about what did reference means. The actual meaning of refernce is **the address that point to the object that stored in heap**.
 
+The concept of passed by value and reference here are used to explain what happen during **assignment** only but not include other situation. 
+
 ## 3. Let/Const and Memory
 **Let's recall the difference between let and const which was mentioned in latest chapter.**
 - let: changeable variable
