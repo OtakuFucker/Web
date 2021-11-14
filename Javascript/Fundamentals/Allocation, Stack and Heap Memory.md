@@ -173,7 +173,7 @@ console.log(obj2.name); //result: Eric_Leung
 - The modification to the assigned variable modifies the value of the original variable simulatenously, vice versa.
 - This reason is because both variables are pointing to the same address, so their value will be influenced by each other during assignment.
 
-**What does reference means?**
+**What does reference means?**<br>
 It's easy to understand what is passed by value as primitive is the passed value itself. However, what does the term reference really refers to? We may need to further understand the always mentioned concept, address, means to allocation and it involves in understanding memory **stack** and **heap**.
 
 ---
@@ -239,16 +239,17 @@ Let's go back to the mentioned question about what did reference means. The actu
 To a beginner, it may straightly be understood as their difference is based on whether the value they contain can be modified.
 
 However, here raises some nonsense situations to be objections to this understanding:
-1.
+
+1. There isn't any error even though the value of the array is changed.
 ```
 const _arr = [1,2,3,4];
 _arr.push(5);
 console.log(_arr); //result: (5)[1,2,3,4,5]
 ```
-**There isn't any error even though the value of the array is changed.**
+
 2. As mentioned, primitive value is immutable, which means the value can't be modified in any case.
 
-***What does "changeable" and "unchangeable" really means then?***
+***What does "changeable" and "unchangeable" really means then?***<br>
 In previous parts, we've explained that js's measure of assignment is creating a new address to holds the value instead of changing the value sits in the original address. Here comes the point:
 1. What we really change during assignment is the variable's address but not value
 3. Therefore, "changeable" actually refers to the allowance to change the address that the variable points to
@@ -282,4 +283,12 @@ To change the value without causing reassignment, it's a good practice to modify
 5. Let and Const
 
 ### Remainder: 
-***Many questions might still be remained after you finished the topic, especially in computing field, and it's totally appreciated. However, in-depth understanding to memory structure is so complex even to developers. In this period, it's fairly enough to know the above concepts abstractly.***
+***Many questions might still be remained after you finished a topic, especially in computing field, and it's totally appreciated. However, in-depth understanding to memory structure is so complex even to developers. In this period, it's fairly enough to know the above concepts abstractly.***
+
+<br>
+
+
+
+
+
+
