@@ -1,5 +1,5 @@
 ---
-title: Memory allocation, Stack and Heap 🟠
+Title: Memory allocation, Stack and Heap 🟠
 ---
 It's fine to complete a simple project even though you know nothing about this. Therefore, there's no shame to pass this chapter if you're too new to this.
 ## Abstract
