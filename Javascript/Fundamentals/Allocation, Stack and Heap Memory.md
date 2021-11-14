@@ -233,26 +233,26 @@ let obj = {};
 Let's go back to the mentioned question about what did reference means. The actual meaning of refernce is **the address that point to the object that stored in heap**.
 
 ## 3. Let/Const and Memory
-**Let's recall the differences between let and const which mentioned in the previous chapter.**
+**Let's recall the difference between let and const which was mentioned in latest chapter.**
 - let: changeable variable
 - const: unchangeable variable <br>
-To a beginner, it may straightly be understood that their difference is based on whether the value they contain can be modified.
+To a beginner, it may straightly be understood as their difference is based on whether the value they contain can be modified.
 
-However, there are some nonsense situations to be objection to this understanding:
+However, here raises some nonsense situations to be objections to this understanding:
 1.
 ```
 const _arr = [1,2,3,4];
 _arr.push(5);
 console.log(_arr); //result: (5)[1,2,3,4,5]
 ```
-**There isn't any error even though value of the array is changed.**
+**There isn't any error even though the value of the array is changed.**
 2. As mentioned, primitive value is immutable, which means the value can't be modified in any case.
 
-***What does "changeable" and "unchangeable" really means?***
-In the previous parts, we've explained that js's method of processing assigment is creating a new address that holds the value instead of changing the value sits in the original address. Here comes the point:
+***What does "changeable" and "unchangeable" really means then?***
+In previous parts, we've explained that js's measure of assignment is creating a new address to holds the value instead of changing the value sits in the original address. Here comes the point:
 1. What we really change during assignment is the variable's address but not value
-3. Therefore, "changeable" actually refers to the allowance to change the address that variable points to
-4. Primitive value it itself is allocated a fixed memory, we need a new address to store its value in every new assignment
+3. Therefore, "changeable" actually refers to the allowance to change the address that the variable points to
+4. Primitive value it itself is allocated a fixed memory, we need a new address to store its value in every assignment
 5. Reference isn't allocated a fixed amount of memory for the objects, changing/adding property to the object doesn't casue creation of new address.
    (or you may understand it as assigning a value to object != assigning a new object, but assigning a primitive value == assigning a new value)
 ```
@@ -261,15 +261,15 @@ _arr.push(5);
 console.log(_arr); //result: (5)[1,2,3,4,5]
 _arr = [1,2,3,4,5]; //error, as it's not changing the value but reassign a new object
 ```
-The reason why using object is not only to contain plural data but aslo be able to dynamically add/deduct/modify its value. Reassignment is definitely against any one of the purposes.
+The reason why using object is not only to contain plural data but aslo be able to dynamically add/deduct/modify its value. Reassignment is definitely against any of the mentioned purposes.
 
-Therefore, the accurate discription of let/const and primtive value/reference should be:
+Therefore, the accurate discription of let/const and primtive value/reference should be...
 - Let: allow to change the address that the variable points to
 - Const: reject to change the address that the variable points to
 - Primitive value: immutable
 - Reference: mutable
 
-***The above discriptions are quite opposite to beginners' intuition, because we may intuitive think that const is used to prevent primitive value be changed. In fact, it is mainly used to prevent object variable be reassgined and casue memory reallocation.***
+***The above discriptions are quite opposite to beginners' intuition, because we may intuitive think that const is used to prevent primitive value be changed. In fact, it is mainly used to prevent object variable be reassgined and casue memory reallocation. However, this point should be distinctly remembered.***
 
 To change the value without causing reassignment, it's a good practice to modify object/array by corresponding methods like pop()/push() they provide. However, talking about them is out of scope here. 
 
@@ -282,4 +282,4 @@ To change the value without causing reassignment, it's a good practice to modify
 5. Let and Const
 
 ### Remainder: 
-***Many questions might still be remained after you finished the topic, especially in computing field, and it's totally appreciated. However, in-depth understanding to memory structure is so complex even to developers. In this period, it's fairly enough to know these features abstractly.***
+***Many questions might still be remained after you finished the topic, especially in computing field, and it's totally appreciated. However, in-depth understanding to memory structure is so complex even to developers. In this period, it's fairly enough to know the above concepts abstractly.***
