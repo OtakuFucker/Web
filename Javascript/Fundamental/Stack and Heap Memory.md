@@ -1,9 +1,10 @@
 ---
-title: Memory allocation / Garbage collection and Memory leaks 🟠
+title: Memory allocation, Stack and Heap 🟠
 ---
-It's fine to complete a simple project even though you know nothing about the above topics. Therefore, there's no shame to pass this chapter if you're too new to this.
+It's fine to complete a simple project even though you know nothing about this. Therefore, there's no shame to pass this chapter if you're too new to this.
 ## Memory
-In all language, memory consists of address and value.<br>
+In all language, memory consists of address and value.
+
 ![image](https://user-images.githubusercontent.com/89114612/141340337-bf1aff17-ea1b-436e-93f0-71c0e9a0da5b.png)
 
 There are various types of memory structures.
@@ -23,36 +24,37 @@ Therefore, we can conclude that the process of memory life cycle **in js** is...
 2) Uses the allocated memory 
 3) Releases the allocated memory when it is not needed anymore automatically
 
-This chapter would be correspondingly divided into **allocation**, **use** and **release** parts.
+This chapter correspondingly focuses on **allocation**, **use** parts.
 
 ## 1. Allocation
-**When allocation occurs, Js engine creates a memory location for variable and assign value**
+**When allocation occurs, Js engine creates a memory location for variable and assign a value to it.**
 
-Technically speaking, allocation occurs only if the variable is defined, which means there's a value assigned to the variable.
+Technically speaking, allocation occurs only if the variable is defined, which means there's a initializing value.
 
 Before further explaination, You may confused about the differences between declaration and definition. 
 ```
 //In fact, every language has its own rule on defining declaration and definition.
 /*In language that holds strict rules: 
   Declaration... 
-  - is used to inform to the compiler the variable information except the conatined value (e.g. let num/int num in C)
-  - won't occur allocation to memory
+  - is used to inform to the compiler the variable information except the conatined value (e.g. [int num;] in C)
+  - won't trigger allocation to memory
   Definition...
   - assigns an actual value to the declared variable and telling where it gets stored
-  - occurs allocation to memory
+  - triggers allocation to memory
   - one variable can only be defined once
 */
-//From the above definition, the value decides whether the variable would be stored in the memory
-//Therefore, the condition of occuring allocation is the assignment/definition of variable's actual value.
+//From the above definition, is there a value inside variable decides whether the variable would be stored in the memory or not.
+//Therefore, the condition of occuring allocation is the assignment/definition to variable.
 ```
 
 **However, Thing happens differently in Javascript...**
 
-In Javascript, you can say that declaration guarantee definition. 
+In Javascript, you can say that declaration guarantees definition. 
 ```
-//In Javascript, once you declare a variable, the value undefined is assigned to it even though it has not been explicitly initialized by developer. 
-//[let num;] means [let num = undefined;]
-//All variables in javascript occur allocation no matter there is a explicitly initialized value or not.
+/*In Javascript, once you declare a variable, the value undefined is assigned to it. 
+ [let num;] means [let num = undefined;]*/
+//Declared variable has a default value even though it has not been explicitly initialized.
+//Therefore, Declared-only variables in javascript are also able to trigger allocation.
 ```
 
 ## 2. Use
@@ -90,7 +92,7 @@ This is a crucial distinction to understand that:
 - **Technically, identifier equals to the memory address that holds the value.**
 <figure>
 <img src="https://user-images.githubusercontent.com/89114612/141510771-e142d2f4-f1f3-4499-aa1d-9108f249fb9b.png" style="width:600px;height:200px;">
-<figurecaption>[img from https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239]</figurecaption>
+<figurecaption>[img from: https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239]</figurecaption>
 </figure>
 
 <br>
@@ -99,7 +101,7 @@ This is a crucial distinction to understand that:
 **Let's modify/write the value now**
 ```
 let num = 20;
-num = 25; //write
+num = 25; //write == assign
 console.log(num); //read
 ```
 It's obvious that the printed result is 25.<br>
@@ -117,131 +119,111 @@ Process of handling ```num``` modification:
 |    :---:   |   :---: |  :-:  | 
 |    num     |   0x10  |  25   | 
 
-<figure>
-<img src="https://user-images.githubusercontent.com/89114612/141513663-ffc87a52-ba00-43c8-b925-554c5b508a7b.png" style="width:600px;height:200px;">
-<figurecaption>[img from https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239]</figurecaption>
-</figure>
-
 ### Primitive value/Reference and Stack/Heap
-The previous chapter mentioned that variable contains primitive value and reference performs differently while modify their value. <br>
-It's due to the differnet memory structure they allocated.
-### What if we assign an identifier to another variable during declaration?
+The previous part explains that the value won't be changed due to the feature of primitive values. <br>
+This part involves in a deeper discription on what **type of value** means. <br>
+
+---
+### 2.1. Primitive value and Reference
+
+Main distinction between Primitive value and Reference is **the former is passed by value** while **the latter is by reference** during assignment.
+
+***Passed by value: Copying the value to finish the assignment***
+
+The previous part shows a instance of assignment of primitive value to variable. The result is that the address of the address of the variable is changed.
+
+- Thing happens the same during declaration 
 ```
-let num = 20;
+let num = 10;
 let num2 = num;
 ```
-What the above code do is copying the address of identifier **num**(0x09) to num2. 
+- Wt the above codes do is copy and assign the value that sits in the address of ```num``` to ```num2```
 
-#### Memories stored inside Stack
-| identifier | Address | Value |  
-|  :---:     |  :---:  |  :-:  | 
-|   num      |   0x09  |  20   | 
-|   num2     |   0x09  |  20   |
+Process of handling assignment to ```num2```:
+1) Copy the value sits in the address of ```num```
+2) Creates a new memory address
+3) Allocates ```num2``` to the new address
+4) Stores the assigned value in the new address
 
-- All types of **variables** are stored in the stack, the bifurcation starts from which type does the variable contain:  
-- Identifier can be treated as the same existence as the address (e.g. (num == 0x09) = 20)
+Now we can deduce some features of Primitive value and Passed by value:
+1. Assinging a primitive value means either **writing a new primitive value to variable** or **assigning/initializing variable by another one that contains a primitive value**.
+3. Primitive value is immutable in js, what it really means is primitive value sits in the address cannot be changed.
+4. Everytime a value/variable containes value is passed, the js engine creates an new address for the assigned variable to store that value.
+5. It's impossible that two variables point to the same address. (you may understand it as every variable that contains primitive value is independent)
+6. Therefore, reassign primitive value to variable would only influence the taregt.
 
-#### Memories stored inside Stack
-| variable          | Address | Value |  
-|  :---:            |  :---:  |  :-:  | 
-| let num = 10      |   0x09  |  10   | 
-| let num2 = num    |   0x09  |  10   |
-| let obj = {}      |   0x10  |  0x11 |
-| let obj2 = obj    |   0x10  |  0x11 |
+In the nutshell, the execution behind passed by value is copy the value and create an address for the variable to store that value.
 
-### Same:
-1) What is passing from the assigned variable is its address
-2) Both the assigned and assign variable point to the same address if there isn't any modification on it (assigned one)**
-### Differences:
-1) If the contained variable is **Primitive value**, the value is stored in Value section directly. Otherwise, the value section store another address.
-2) When the assigned variable is modified...
-  ```
-  num2 = 24;
-  ```
-  - If the contained value is primitive value, a new address for storing the value 24 will be allocated
+***Passed by reference: Makeing two variables point to the same address during assignment.***
+```
+//This is a case of assigning an object to variable;
+let obj = {name: "Eric"};
+let obj2 = obj;
+console.log(obj2.name); //result: Eric
+//Now try to modify the value
+obj2.name = "cuhk_Eric";
+consoel.log(obj2.name); //result: cuhk_Eric
+onj.name = "Eric_Leung";
+console.log(obj2.name); //result: Eric_Leung
+```
+- The modification to the assigned variable modifies the value of the original variable simulatenously, vice versa.
+- This reason is because both variables are pointing to the same address, so their value will be influenced by each other during assignment.
 
-**FYI, it raises a deeper interpertion to the difference between let and const in the previous chapter. As you can see when the value is changed, what it really changes is the address that the variable points to, and then add the corresponding value to the new adrress.**
+**What does reference means?**
+It's easy to understand what is passed by value as primitive is the passed value itself. However, what does the term reference really refers to? We may need to further understand the always mentioned concept, address, means to allocation and it involves in understanding memory **stack** and **heap**.
 
-**Therefore, their actual difference is let allows the change to the address while const rejects so**
+---
+### 2.2. Stack and Heap
 
-**Some methods just modify the value, while some assign a completely new address. !!Change of value is different from change of memory, it's a important point that has always to be remembered in the future!!**
-  ```
-  let obj = {name: `Eric`};
-  let obj2 = obj;
-  obj2.name = `Eric Leung`;
-  console.log(obj.name); //result: Eric Leung
-  ```
-  - If the contained value is reference, all data in the variables that point to the same address would be modified
+Stack an Heap are two types of memories. Both of them consist of address and value section.
 
-Let's conclude different stacks of the memory allocation first
+Normally, what we always hear is that primitive value is stored in stack while refernce is in heap. <br>
+The above discription is in some sense correct but not accerately enough to explain how the allocation works. <br>
 
-#### Address section: 
-- Identifer/ Address/ Variable stored inside stacks
+In fact, during allocation...
+1) No matter which kind of data type is assigned, the js enigine allocates the identifier to an address in stack first.
+2) Then js engine inputs the value in the value section. 
+-  If the assigned value is **primitive data**, the value sits in the address of stack will be **that value**.<br>
+   <figure>
+   <img src="https://user-images.githubusercontent.com/89114612/141673808-0c8046a7-ae70-446f-af24-f575f39e32b5.png">
+   <figurecaption>[img from: https://felixgerschau.com/javascript-memory-management/]</figurecaption>
+   </figure>
+-  If the assigned value is **reference**, the value sits in the address of stack will be **another address that points to heap memory**.
+   <figure>
+   <img src="https://user-images.githubusercontent.com/89114612/141673896-7ccb7134-da80-4785-8cd3-98370770a357.png">
+   <figurecaption>[img from: https://felixgerschau.com/javascript-memory-management/]</figurecaption>
+   </figure>
 
-#### Value section
-- If value is primitive value, it's stored inside **value section of stack** directly
-- If value is reference, it's actual value stored inside **heap memory** and pointed by the address which is inside **value section of stack**
+**All variables are actually first point to their corresponding address in stack, the difference is between which memory is its value stored in.**
 
-## JavaScript’s memory model: the call stack and the heap
-### Stack
-The stack is where primitives value are stored. The key feature is that the data stored inside the stack is in a stacking order and following the rule of FILO (first in last out)
-### Heap
-As an instance of memory structure, heap also consists in address and value
-However...
-1) The heap is used to store non-primitives values 
-2) Heap store non-primitives values, data that can grow dynamically—perfect for arrays and objects, unorderly and randomly.
-3) The "allocated adddress" in the heap is the **value of object-type variable** in the stack
+#### Stack
+1. Stack is a linear data structure.
+2. Variables are stored in stack one by one and based on the rule of ```FILO```.(first in last out)
+```
+let num = 1;
+let num2 = 2;
+let num3 = 3;
+let num4 = 4;
+let obj = {};
+```
+|   Stack    |    :---:|:-:    |
+|    :---:   |   :---: |  :-:  | 
+| identifier | Address | Value |
+|    obj     |   0x05  |  0x10 | 
+|    num4    |   0x04  |  4    | 
+|    num3    |   0x03  |  3    | 
+|    num2    |   0x02  |  2    | 
+|    num     |   0x01  |  1    | 
+
+#### Heap 
+1. Stack is a non-linear data structure.
+2. Variable are stored in the heap randomly.
 
 <figure>
-<img src="https://user-images.githubusercontent.com/89114612/141468386-9b11b0ea-b24f-49b8-a80d-5f8bb1ea451a.png">
-<figcaption>figure from: https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239</figcaption>
+<img src="https://user-images.githubusercontent.com/89114612/141675699-de74f8f8-9e4b-46b3-8904-3d2c1355802a.png" style="height:450px;">
+<figurecaption>[img from: https://medium.com/@ethannam/javascripts-memory-model-7c972cd2c239]</figurecaption>
 </figure>
 
+Let's go back to the mentioned question that what did reference means. The actual meaning of refernce is **the address that point to the object that stored in heap**.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Stack and Heap
-All data types (static data) are allocated to **stack memory**, while Reference Type would be allocated to **heap memory** afterward
-
-The process of memory allocation:<br>
-1. Static memory allocation (for all data) > 2. Dynamic memory allocation (for references)
-
-### Stack: Static memory allocation
+***In-depth understanding to stack and heap is so complex even to developers. It's fairly enough to know these features abstractly in this period.***
